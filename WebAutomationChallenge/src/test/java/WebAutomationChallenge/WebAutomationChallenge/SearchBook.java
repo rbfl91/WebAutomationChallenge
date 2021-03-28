@@ -64,7 +64,8 @@ public class SearchBook {
 	  
 	  if (bookResult != null) { 
 		  
-		  System.out.println("The book " + this.wantedBook + ", from publisher " + bookResult.getPublisher() + " and author " + bookResult.getAuthor() + " is available on the search results.");
+		  System.out.println("The book " + this.wantedBook + ", from publisher " 
+		  + bookResult.getPublisher() + " and author " + bookResult.getAuthor() + " is available on the search, from a total of " + bookResult.getTotal() + " results,");
 	  }
 	  
 	  //TODO 
@@ -110,7 +111,7 @@ public class SearchBook {
   @AfterClass
   public void afterClass() { 
 	  
-	  driver.quit();
+	  //driver.quit();
   }
 
 }

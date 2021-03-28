@@ -126,9 +126,18 @@ public class MainPage {
     	Boolean bookIsAvailable = false;
     	Book book = null;
     	
+    	int bookCount = 0; 
+    	
     	List <WebElement> allBookOptions = this.searchTable.findElements(By.cssSelector(".rt-tr-group")); 
     	
         for ( WebElement bookElement: allBookOptions) { 
+        	
+        	List <WebElement> bookInfoTemp = bookElement.findElements(By.cssSelector(".rt-tr .rt-td")); 
+        			
+        	if (!bookInfoTemp.get(3).getText().isBlank()) {
+        		
+        		bookCount++;
+        	}
         	
         	if (bookElement.getText().contains(wantedBook)) { 
         		
@@ -136,7 +145,7 @@ public class MainPage {
         		
         		List <WebElement> bookInfo = bookElement.findElements(By.cssSelector(".rt-tr .rt-td")); 
         		
-        		book = new Book (wantedBook, bookInfo.get(2).getText(), bookInfo.get(3).getText());
+        		book = new Book (wantedBook, bookInfo.get(2).getText(), bookInfo.get(3).getText(), bookCount);
         	}
         	
         } 
