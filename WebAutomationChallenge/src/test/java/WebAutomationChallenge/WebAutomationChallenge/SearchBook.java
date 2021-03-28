@@ -86,6 +86,9 @@ public class SearchBook {
 	 
 	 mainPage = bookInfoPage.clickOnBackToStoreButton(); 
 	 
+	//Asserts through the user name text on the page
+	assertTrue (mainPage.returnUserName().equals(userName));
+	 
   }
   
   @BeforeClass
