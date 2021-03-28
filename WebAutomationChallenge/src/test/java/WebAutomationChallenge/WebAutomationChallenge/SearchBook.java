@@ -68,17 +68,7 @@ public class SearchBook {
 		  + bookResult.getPublisher() + " and author " + bookResult.getAuthor() + " is available on the search, from a total of " + bookResult.getTotal() + " results,");
 	  }
 	  
-	  //TODO 
-	  /* 
-	    - Data Provider 
-		- library report 
-		- log register 
-		- API gateway (for optional part)
-
-		- How to know if used structure would be scalable? Many tests in sequence are possible? 
-		- Make the tests scalable for dynamic data?
-		- ProfilePage could inherit from MainPage? 
-	   */
+	 
 	  
   }
   
@@ -111,7 +101,7 @@ public class SearchBook {
   @AfterClass
   public void afterClass() { 
 	  
-	  //driver.quit();
+	  driver.quit();
   }
 
 }
