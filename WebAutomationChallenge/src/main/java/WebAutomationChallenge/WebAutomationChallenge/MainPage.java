@@ -121,23 +121,29 @@ public class MainPage {
         return path;
     }
     
-    public Boolean isBookAvailable(String wantedBook) {
+    public Book isBookAvailable(String wantedBook) {
     	
-    	Boolean toReturn = false;
+    	Boolean bookIsAvailable = false;
+    	Book book = null;
     	
-    	List <WebElement> allBookOptions = this.searchTable.findElements(By.cssSelector(".rt-tr-group"));
+    	List <WebElement> allBookOptions = this.searchTable.findElements(By.cssSelector(".rt-tr-group")); 
     	
-        for ( WebElement book: allBookOptions) { 
+        for ( WebElement bookElement: allBookOptions) { 
         	
-        	//WebElement tempElement = book.findElement(By.cssSelector(".action-buttons"));
-            
-        	if (book.getText().contains(wantedBook)) { 
+        	if (bookElement.getText().contains(wantedBook)) { 
         		
-        		toReturn = true;
+        		bookIsAvailable = true;
+        		
+        		List <WebElement> bookInfo = bookElement.findElements(By.cssSelector(".rt-tr .rt-td")); 
+        		
+        		book = new Book (wantedBook, bookInfo.get(2).getText(), bookInfo.get(3).getText());
         	}
+        	
         } 
         
-        return toReturn;
+        return book;
     }
+    
+    
 
 }

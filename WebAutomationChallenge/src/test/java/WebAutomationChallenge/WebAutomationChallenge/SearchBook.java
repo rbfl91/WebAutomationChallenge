@@ -37,7 +37,9 @@ public class SearchBook {
 	String userName = "User11";
 	String password = "Teste123$";
 	String searchTerm = "JavaScript"; 
-	String wantedBook = "Speaking JavaScript";
+	String wantedBook = "Speaking JavaScript"; 
+	
+	Book bookResult;
 	
   @Test(description="This method validates the book searching functionality")
   public void searchBook() { 
@@ -58,9 +60,11 @@ public class SearchBook {
 	  
 	  System.out.println("A screenshot of the search results has been taken. \n The screenshot file path is: " + mainPage.captureScreen());
 	  
-	  if (mainPage.isBookAvailable(this.wantedBook)) { 
+	  bookResult = mainPage.isBookAvailable(this.wantedBook);
+	  
+	  if (bookResult != null) { 
 		  
-		  System.out.println("The book " + this.wantedBook + " is available on the search results.");
+		  System.out.println("The book " + this.wantedBook + ", from publisher " + bookResult.getPublisher() + " and author " + bookResult.getAuthor() + " is available on the search results.");
 	  }
 	  
 	  //TODO 
@@ -84,7 +88,7 @@ public class SearchBook {
 	  driver = new ChromeDriver();
 	  driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	  
-	  // Initiates the driver with ToolsQA's form page
+	  // Initiates the driver with DemoQA's form page
 	  this.driver.get("https://demoqa.com/books");
 	  this.driver.manage().window().maximize();
 	 
