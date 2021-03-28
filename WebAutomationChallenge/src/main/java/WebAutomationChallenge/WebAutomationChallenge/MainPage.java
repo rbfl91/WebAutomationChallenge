@@ -123,7 +123,6 @@ public class MainPage {
     
     public Book isBookAvailable(String wantedBook) {
     	
-    	Boolean bookIsAvailable = false;
     	Book book = null;
     	
     	int bookCount = 0; 
@@ -140,9 +139,7 @@ public class MainPage {
         	}
         	
         	if (bookElement.getText().contains(wantedBook)) { 
-        		
-        		bookIsAvailable = true;
-        		
+        			
         		List <WebElement> bookInfo = bookElement.findElements(By.cssSelector(".rt-tr .rt-td")); 
         		
         		book = new Book (wantedBook, bookInfo.get(2).getText(), bookInfo.get(3).getText(), bookCount);
@@ -151,6 +148,26 @@ public class MainPage {
         } 
         
         return book;
+    }
+    
+    public BookInfoPage clickOnBookLink (String wantedBook) { 
+    	
+    	List <WebElement> allBookOptions = this.searchTable.findElements(By.cssSelector(".rt-tr-group")); 
+    	
+        for ( WebElement bookElement: allBookOptions) { 
+        	
+        	if (bookElement.getText().contains(wantedBook)) { 
+        			
+        		List <WebElement> bookInfo = bookElement.findElements(By.cssSelector(".rt-tr .rt-td")); 
+        		
+        		bookInfo.get(1).findElement(By.cssSelector(".action-buttons")).click();
+        		break;
+        	}
+        	
+        } 
+    	
+    	
+    	return new BookInfoPage(this.driver);
     }
     
     

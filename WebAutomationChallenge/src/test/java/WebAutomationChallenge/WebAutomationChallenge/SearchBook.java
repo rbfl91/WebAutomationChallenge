@@ -21,12 +21,15 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class SearchBook {
 
-	WebDriver driver; 
+	WebDriver driver;  
+	
+	WebDriverWait waitAlert;
 	
 	MainPage mainPage;
 	LoginPage loginPage;
 	RegisterPage registerPage; 
-	ProfilePage profilePage;
+	ProfilePage profilePage; 
+	BookInfoPage bookInfoPage;
 	
 	File scrFile;
 	
@@ -68,8 +71,21 @@ public class SearchBook {
 		  + bookResult.getPublisher() + " and author " + bookResult.getAuthor() + " is available on the search, from a total of " + bookResult.getTotal() + " results,");
 	  }
 	  
+	 bookInfoPage = mainPage.clickOnBookLink(this.wantedBook);
 	 
-	  
+	 System.out.println("A screenshot of the book's information has been taken. \n The screenshot file path is: " + bookInfoPage.captureScreen());
+	 
+	 bookInfoPage.clickOnTheAddButton();
+	 
+	 waitAlert = new WebDriverWait(driver, 10);
+	 waitAlert.until(ExpectedConditions.alertIsPresent());
+	 
+	 //System.out.println("A screenshot of the book's adding confirmation has been taken. \n The screenshot file path is: " + mainPage.captureScreen());
+	 
+	 driver.switchTo().alert().accept(); 
+	 
+	 mainPage = bookInfoPage.clickOnBackToStoreButton(); 
+	 
   }
   
   @BeforeClass
