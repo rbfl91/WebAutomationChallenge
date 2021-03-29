@@ -19,5 +19,5 @@ Defined Page Object Classes:
 
 Next Steps: 
 
-- Dynamic data useing with Apache POI + .excel input files 
+- Dynamic data usage with Apache POI + .excel input files 
 - API testing with Rest Assured framework
