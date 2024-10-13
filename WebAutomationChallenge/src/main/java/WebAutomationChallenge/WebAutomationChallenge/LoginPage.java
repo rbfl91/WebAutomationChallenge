@@ -17,17 +17,14 @@ public class LoginPage {
 	
 	WebDriver driver; 
 	
-	@FindBy(css = "#userName")
+	@FindBy(css = "#email")
 	public WebElement userBox;  
 	
-	@FindBy(css = "#password")
+	@FindBy(css = "#pass")
 	public WebElement passwordBox;
-	
-	@FindBy(css = "#newUser")
-	public WebElement newUserButton;
-	
-	@FindBy(css = "#login")
-	public WebElement logInButton;
+
+	@FindBy(css = "#send2")
+	public WebElement signInButton;
     
 	// PageObject Constructor
     public LoginPage(WebDriver driver) {
@@ -68,40 +65,17 @@ public class LoginPage {
     	this.passwordBox.sendKeys(text);
     	System.out.println(text + " has been written on the text field"); 
     	return this;
-    } 
+    }
     
-    public RegisterPage clickOnTheNewUserButton() {    
+    public HomePage clickOnTheSignInButton() {
     	
-    	//Waits until the button is clickable
+    	//Explicit wait for the search box to be displayed
     	WebDriverWait wait = new WebDriverWait(this.driver, 10);
-    	wait.until(ExpectedConditions.elementToBeClickable(newUserButton));
+    	wait.until(ExpectedConditions.elementToBeClickable(signInButton));
     	
-    	this.newUserButton.click();
-    	System.out.println("The New User button has been clicked");
-    	return new RegisterPage (this.driver);
-    } 
-    
-    // To be called only after a new user is registered
-    public ProfilePage clickOnTheLogInButtonAfterRegister() {    
-    	
-    	//Waits until the button is clickable
-    	WebDriverWait wait = new WebDriverWait(this.driver, 10);
-    	wait.until(ExpectedConditions.elementToBeClickable(logInButton));
-    	
-    	this.logInButton.click();
-    	System.out.println("The Log In button has been clicked");
-    	return new ProfilePage (this.driver);
-    } 
-    
-    public MainPage clickOnTheLogInButton() {    
-    	
-    	//Waits until the button is clickable
-    	WebDriverWait wait = new WebDriverWait(this.driver, 10);
-    	wait.until(ExpectedConditions.elementToBeClickable(logInButton));
-    	
-    	this.logInButton.click();
-    	System.out.println("The Log In button has been clicked");
-    	return new MainPage (this.driver);
+    	this.signInButton.click();
+    	System.out.println("The Sign In button has been clicked");
+    	return new HomePage (this.driver);
     } 
   
 }
