@@ -1,6 +1,8 @@
 package WebAutomationChallenge.WebAutomationChallenge;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.io.FileHandler;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -19,7 +21,7 @@ public class HomePage {
 	@FindBy(css = "#html-body > div.page-wrapper > header > div.panel.wrapper > div > div.welcome > a > i")
 	public WebElement signInButton;
 
-	@FindBy(xpath = "//*[@id=\"main-menu\"]/div/ul/li[1]/a")
+	@FindBy(partialLinkText = "HIGH LIFE CAFÉ")
 	public WebElement coffeePageButton;
 
 	@FindBy(css = "#search")
@@ -27,6 +29,10 @@ public class HomePage {
 
 	@FindBy(xpath = "//*[@id=\"search_mini_form\"]/div[2]/button")
 	public WebElement searchButton;
+
+	@FindBy(xpath = "//*[@id=\"amgdprcookie-form\"]/div[2]/div[2]/button[3]")
+	public WebElement allowCookiesButton;
+
 
 	// PageObject Constructor
     public HomePage(WebDriver driver) {
@@ -89,8 +95,25 @@ public class HomePage {
 		WebDriverWait wait = new WebDriverWait(this.driver, 10);
 		wait.until(ExpectedConditions.elementToBeClickable(coffeePageButton));
 
-		this.coffeePageButton.click();
+		Actions actions = new Actions(this.driver);
+		actions.moveToElement(coffeePageButton).click();
+
+		Action action = actions.build();
+		action.perform();
+
+		//this.coffeePageButton.click();
 		System.out.println("The Coffee Page button has been clicked");
 		return new ProductListPage (this.driver);
+	}
+
+	public HomePage clickOnTheAllowCookiesButton() {
+
+		//Explicit wait for the button to be clickable
+		WebDriverWait wait = new WebDriverWait(this.driver, 10);
+		wait.until(ExpectedConditions.elementToBeClickable(allowCookiesButton));
+
+		this.allowCookiesButton.click();
+		System.out.println("The Allow Cookies button has been clicked");
+		return this;
 	}
 }

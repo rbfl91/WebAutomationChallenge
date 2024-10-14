@@ -40,9 +40,18 @@
 	    <version>6.14.3</version>
 	    <scope>compile</scope>
 	</dependency>
-	
-    
-    
+
+    <dependency>
+      <groupId>com.aventstack</groupId>
+      <artifactId>extentreports</artifactId>
+      <version>5.0.9</version> <!-- Check for the latest version -->
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-collections4</artifactId>
+      <version>4.4</version> <!-- Check for the latest version -->
+    </dependency>
+
   </dependencies>
 
   <build>
